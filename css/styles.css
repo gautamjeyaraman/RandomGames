@@ -27,4 +27,6 @@ body {
 
 .listLink {
 	text-decoration: none;
+	display: block;
+	margin-top: 12px;
 }

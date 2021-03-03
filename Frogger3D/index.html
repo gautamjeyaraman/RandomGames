@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Frogger3D</title>
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+  </head>
+
+  <body onload="main();">
+    <h1 style="position:fixed;right:60px;color:#04883f;font-size:50px;">Frogger 3D</h1>
+    <h1 style="position:fixed;right:100px;top:150px;">Lives Remaining: <span id="lives"></span>/<span id="total_lives"></span></h1>
+    <h1 style="position:fixed;right:100px;top:250px;">Level: <span id="level"></span></h1>
+    <h1 style="position:fixed;right:100px;top:350px;">Wins needed for next level: <span id="frog_needed"></span></h1>
+    <h1 style="position:fixed;right:100px;top:450px;">SCORE: <span id="score"></span></h1>
+    <h1 style="color: red;font-size: 100px;top: 100px;position: absolute;left: 200px;z-index: -1;">You Lost!</h1>
+    <button style="position:fixed;font-size: 20px;right:100px;top:550px;padding:20px;" onclick="switchCamera();">Switch Camera View</button>
+  </body>
+</html>
