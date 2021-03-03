@@ -7,6 +7,7 @@
     const BOARD_HEIGHT = 510;
     const X_UNIT_COUNT = BOARD_WIDTH / UNIT_WIDTH;
     const Y_UNIT_COUNT = BOARD_HEIGHT / UNIT_HEIGHT;
+    const INITIAL_LENGTH = 3;
 
 	let directions = [0, 1, 0, -1, 0];
 	let currentDirection = 1;
@@ -61,7 +62,7 @@
         render() {
             const newX = this.x * UNIT_WIDTH;
             const newY = this.y * UNIT_HEIGHT;
-            if (newX < 0 || newX > BOARD_WIDTH || newY < 0 || newY > BOARD_HEIGHT) {
+            if (newX < 0 || newX > BOARD_WIDTH - 1 || newY < 0 || newY > BOARD_HEIGHT - 1) {
                 return false;
             }
 
@@ -86,11 +87,9 @@
             const snakeY = snake.map(unit => unit.y);
 
             let newX = getRandom(X_UNIT_COUNT);
-            while(snakeX.includes(newX)) {
-                newX = getRandom(X_UNIT_COUNT);
-            }
             let newY = getRandom(Y_UNIT_COUNT);
-            while(snakeY.includes(newY)) {
+            while(snake.some(unit => unit.x === newX && unit.y === newY)) {
+                newX = getRandom(X_UNIT_COUNT);
                 newY = getRandom(Y_UNIT_COUNT);
             }
 
@@ -103,13 +102,10 @@
 
 	class SnakeGame {
 		constructor() {
-			this.snake = [
-                new SnakeUnit(4,0),
-                new SnakeUnit(3,0),
-                new SnakeUnit(2,0),
-                new SnakeUnit(1,0),
-                new SnakeUnit(0,0),
-            ];
+            this.snake = [];
+            for(let i=0; i<INITIAL_LENGTH; i++) {
+                this.snake.unshift(new SnakeUnit(i,0));
+            }
 
             this.food = new FoodUnit(this.snake);
 		}
