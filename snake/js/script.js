@@ -14,7 +14,6 @@
     document.onkeydown = checkKey;
 
     function checkKey(e) {
-
         e = e || window.event;
 
         if (e.keyCode == '38') {
@@ -36,15 +35,18 @@
 
     }
 
+    function getRandom(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
 
-    class SnakeUnit {
-        constructor(x, y) {
+    class GameUnit {
+        constructor(x, y, unitType) {
             this.x = x;
             this.y = y;
 
             this.element = $(document.createElement("div"));
-			this.element.attr("id", "gameBox" + x +"x"+ y+"y");
-			this.element.attr("class", "gameBox");
+			this.element.attr("id", unitType + x +"x"+ y+"y");
+			this.element.attr("class", unitType);
             $("#mainFrame").append(this.element);
         }
 
@@ -72,45 +74,30 @@
 
     }
 
-    class FoodUnit {
+    class SnakeUnit extends GameUnit {
+        constructor(x, y) {
+            super(x, y, "gameBox");
+        }
+    }
+
+    class FoodUnit extends GameUnit {
         constructor(snake) {
             const snakeX = snake.map(unit => unit.x);
             const snakeY = snake.map(unit => unit.y);
 
-            this.x = this.getRandom(X_UNIT_COUNT);
-            while(snakeX.includes(this.x)) {
-                this.x = this.getRandom(X_UNIT_COUNT);
+            let newX = getRandom(X_UNIT_COUNT);
+            while(snakeX.includes(newX)) {
+                newX = getRandom(X_UNIT_COUNT);
             }
-            this.y = this.getRandom(Y_UNIT_COUNT);
-            while(snakeY.includes(this.y)) {
-                this.y = this.getRandom(Y_UNIT_COUNT);
+            let newY = getRandom(Y_UNIT_COUNT);
+            while(snakeY.includes(newY)) {
+                newY = getRandom(Y_UNIT_COUNT);
             }
 
-            this.element = $(document.createElement("div"));
-			this.element.attr("id", "foodBox" + this.x +"x"+ this.y+"y");
-			this.element.attr("class", "foodBox");
-            $("#mainFrame").append(this.element);
+            super(newX, newY, "foodBox");
             this.render();
         }
 
-        getRandom(max) {
-            return Math.floor(Math.random() * Math.floor(max));
-        }
-
-        remove() {
-            this.element.remove();
-        }
-
-        isColliding(node) {
-            return this.x === node.x && this.y === node.y;
-        }
-
-        render() {
-            this.element.css({
-				'left': this.x * UNIT_WIDTH + 'px',
-				'top': this.y * UNIT_HEIGHT + 'px',
-            });
-        }
 
     }
 
