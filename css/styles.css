@@ -1,0 +1,30 @@
+
+body {
+	background: #92dea7;
+}
+
+.container {
+	margin: 100px auto;
+	width: 900px;
+}
+
+.header {
+	color: #333;
+	font-size: 40px;
+}
+
+.content {
+	color: #777;
+	font-size: 20px;
+	margin-top: 4px;
+}
+
+.list {
+	color: #333;
+	font-size: 30px;
+	margin-top: 50px;
+}
+
+.listLink {
+	text-decoration: none;
+}

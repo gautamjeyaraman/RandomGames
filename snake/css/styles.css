@@ -1,0 +1,46 @@
+
+body {
+	background: #92dea7;
+}
+
+.mainFrame {
+	background: white;
+	position: relative;
+	border: 1px solid #000;
+	width: 960px;
+	height: 510px;
+	margin: 30px auto 0;
+    z-index: 2;
+}
+
+.gameBox {
+	position: absolute;
+	width:29px;
+	height: 29px;
+	background: red;
+	border: 1px solid #000;
+}
+
+.foodBox {
+	position: absolute;
+	width:29px;
+	height: 29px;
+	background: green;
+	border: 1px solid #000;
+}
+
+.balance {
+	position: absolute;
+	color: green;
+	top: 510px;
+	font-size: 18px;
+}
+
+.gameOverText {
+	position: fixed;
+	color: red;
+	top: 200px;
+	left: 700px;
+	font-size: 40px;
+    z-index: 1;
+}
